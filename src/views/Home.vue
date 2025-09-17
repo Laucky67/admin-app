@@ -3,8 +3,10 @@ import { ref, getCurrentInstance, onMounted, reactive } from "vue";
 import axios from "axios";
 import * as echarts from "echarts";
 import api from "../api/api";
+import { useRouter } from "vue-router";
 
 const { proxy } = getCurrentInstance();
+const router = useRouter();
 
 const getImageUrl = (user) =>
   new URL(`../assets/images/${user}.png`, import.meta.url).href;
@@ -81,6 +83,10 @@ const getChartData = async () => {
   ];
   const threeEchart = echarts.init(proxy.$refs["videochart"]);
   threeEchart.setOption(pieOptions)
+};
+
+const goToDataVisualization = () => {
+  router.push('/data-visualization');
 };
 
 onMounted(() => {
@@ -169,6 +175,11 @@ const pieOptions = reactive({
         <div class="login-info">
           <p>上次登录时间: <span>2024-06-30</span></p>
           <p>上次登录地点: <span>南京</span></p>
+        </div>
+        <div class="action-buttons">
+          <el-button type="primary" @click="goToDataVisualization" style="width: 100%; margin-top: 20px;">
+            数据可视化页面
+          </el-button>
         </div>
       </el-card>
 

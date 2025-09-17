@@ -18,6 +18,11 @@ const routes = [
                 component: () => import('@/views/Products.vue')
             },
         ]
+    },
+    {
+        path: '/data-visualization',
+        name: 'DataVisualization',
+        component: () => import('@/views/DataVisualization.vue')
     }
 ]
 
